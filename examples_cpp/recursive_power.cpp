@@ -30,6 +30,7 @@ double recursive_power(double _x, size_t _n)
   //                       = e ^( (ln(1)-ln(n)) / n) (ln(1) = 0)
   //                       = e ^( -ln(n) / n)
   //                       ~ 1 + (-ln(n)/n) + O((1/n)^2) where (O(1/n)^2) -> 0)
+  //                       ~ 1 + (-ln(n)/n) + O((1/n)^2) where (O(1/n)^2) -> 0)
   //                       -> 1 when n -> +oo
   // so 0^0 = 1 ?! Yes, but the limit is approaching 1 not exactly equals to 1 !
   if (_x == 0. && _n == 0) return 1;
