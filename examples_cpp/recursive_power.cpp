@@ -10,7 +10,7 @@ using namespace std::chrono;
   Trivial test cases:
   x = x, n = 0 => recursive_power(x,0) = 1 for all x in real numbers
   x = x, n = 1 => recursive_power(x,1) = x for all x in real numbers
-  x = 0, n = n => recursive_power(0,n) = 0 for all n in natural numbers U {0}
+  x = 0, n = n => recursive_power(0,n) = 0 for all n in natural numbers
   x = 1, n = n => recursive_power(1,n) = 1 for all n in natural numbers U {0}
 */
 
@@ -33,7 +33,7 @@ double recursive_power(double _x, size_t _n)
   //                       ~ 1 + (-ln(n)/n) + O((1/n)^2) where (O(1/n)^2) -> 0)
   //                       -> 1 when n -> +oo
   // so 0^0 = 1 ?! Yes, but the limit is approaching 1 not exactly equals to 1 !
-  if (_x == 0. && _n == 0) return 1;
+  if (_x == 0. && _n == 0) return 1.;
 
   // Ternary Operator equivalent to (*)
   return (_n==0) ? (1.0) :  (_x * recursive_power(_x, _n - 1)) ;
