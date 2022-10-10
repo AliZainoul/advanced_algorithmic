@@ -11,7 +11,7 @@ using namespace std::chrono;
   Trivial test cases:
   x = x, n = 0 => recursive_power(x,0) = 1 for all x in real numbers
   x = x, n = 1 => recursive_power(x,1) = x for all x in real numbers
-  x = 0, n = n => recursive_power(0,n) = 0 for all n in natural numbers U {0}
+  x = 0, n = n => recursive_power(0,n) = 0 for all n in natural numbers
   x = 1, n = n => recursive_power(1,n) = 1 for all n in natural numbers U {0}
 */
 
