@@ -29,7 +29,7 @@ T vector_product(const vector<T>& _v)
   return product;
 }
 
-// A function to print all prime
+// A function to store all prime
 // factors of a given number n
 vector<int> primeFactors(const int& _n)
 {
