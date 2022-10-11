@@ -18,7 +18,7 @@ using namespace std::chrono;
 double optimized_recursive_power(double _x, size_t _n)
 {
   // Case when x = n = 0 ?! We know that: (1/n)^(1/n) -> 1 when n -> +oo
-  // Because: (1/n) ^(1/n) = e ^(ln(1/n) / n)
+  // Proof: (1/n) ^(1/n) = e ^(ln(1/n) / n)
   //                       = e ^( (ln(1)-ln(n)) / n) (ln(1) = 0)
   //                       = e ^( -ln(n) / n)
   //                       ~ 1 + (-ln(n)/n) + O((1/n)^2) where (O(1/n)^2) -> 0)
