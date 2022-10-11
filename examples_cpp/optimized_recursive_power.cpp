@@ -27,10 +27,10 @@ double optimized_recursive_power(double _x, size_t _n)
   // so 0^0 = 1 ?! Yes, but the limit is approaching 1 not exactly equals to 1 !
   if (_x == 0. && _n == 0) return 1.;
   if (_n == 1) return _x;
-  if (_n%2 == 0) return optimized_recursive_power(_x*_x, _n/2);
+  if (_n%2 == 0) return optimized_recursive_power(_x * _x, _n/2);
   else
   {
-    return optimized_recursive_power(_x*_x, (_n-1)/2);
+    return _x * optimized_recursive_power(_x * _x, (_n-1)/2);
   }
 }
 // Time complexity  O(log n)
