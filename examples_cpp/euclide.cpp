@@ -5,7 +5,7 @@ using std::cin;
 
 /*
 Recursive call to Euclide's algorithm
-fonction euclide(a, b)
+function euclide(a, b)
   if b = 0 then return a
   else return euclide(b, a modulo b)
 */
