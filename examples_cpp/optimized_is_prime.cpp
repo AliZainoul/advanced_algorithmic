@@ -9,10 +9,6 @@ using std::string;
 
 using namespace std::chrono;
 
-const bool comparing (const bool& b1, const bool& b2)
-{
-  return (b1==b2) ? true : false; // compare;
-}
 
 const string is_prime_result (const bool& b)
 {
@@ -28,12 +24,11 @@ const string my_result (const bool& b)
 const bool is_prime(const size_t& _n)
 {
   // Assumes that n is a (positive) natural number
-  if (_n <= 0)  cerr << "The number should be positive ! " << '\n';
+  if (_n < 0)  cerr << "The number should be positive ! " << '\n';
   // Otherwise we continue
   else
   {
-    if (_n == 1) return false; // 1 is not a prime, nor 0.
-
+    if (_n == 0 || _n == 1) return false; // 1 is not a prime, nor 0.
     size_t factors = 0;
     for (size_t i = 1; i <= _n; ++i)
     {
@@ -66,13 +61,20 @@ const bool is_prime(const size_t& _n)
 
 const bool optimized_is_prime (const size_t& _n)
 {
+
   // Assumes that n is a (positive) natural number
-  if (_n <= 1)      return false; // 1 is not a prime, nor 0.
-  for (size_t i = 2; (i*i) <= _n; i++)
+  if (_n < 0)  cerr << "The number should be positive ! " << '\n';
+  // Otherwise we continue
+  else
   {
-    if (_n % i == 0)  return false;
+    if (_n == 0 || _n == 1) return false; // 1 is not a prime, nor 0.
+    for (size_t i = 2; (i*i) <= _n; i++)
+    {
+      if (_n % i == 0)  return false;
+    }
+    return true;
   }
-  return true;
+  return false;
 }
 // Time complexity : O(√_n)
 
@@ -103,7 +105,7 @@ int main ()
   // Call of the function optimized_is_prime(k)
   for (size_t k = 1; k <= N; ++k)
   {
-    cout << my_result(comparing(optimized_is_prime(k), is_prime(k)));
+    cout << my_result( optimized_is_prime(k) ==  is_prime(k) );
   }
   cout << '\n';
   cout << " -------------------------------------------- "<< '\n';

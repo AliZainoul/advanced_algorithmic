@@ -3,7 +3,6 @@
 
 using std::cin;
 using std::cout;
-using std::cerr;
 
 using namespace std::chrono;
 
@@ -16,24 +15,26 @@ using namespace std::chrono;
 */
 
 
-double trivial_power(double _x, size_t _n)
+double optimized_recursive_power(double _x, size_t _n)
 {
-  double result = 1.0;
-  if (_n < 0)
-    cerr << "The exponent is negative, it should be positive." << '\n';
-  if (_x == 0 && _n == 0) return 1.0;
-  if (_n == 0) return 1.0;
+  // Case when x = n = 0 ?! We know that: (1/n)^(1/n) -> 1 when n -> +oo
+  // Because: (1/n) ^(1/n) = e ^(ln(1/n) / n)
+  //                       = e ^( (ln(1)-ln(n)) / n) (ln(1) = 0)
+  //                       = e ^( -ln(n) / n)
+  //                       ~ 1 + (-ln(n)/n) + O((1/n)^2) where (O(1/n)^2) -> 0)
+  //                       ~ 1 + (-ln(n)/n) + O((1/n)^2) where (O(1/n)^2) -> 0)
+  //                       -> 1 when n -> +oo
+  // so 0^0 = 1 ?! Yes, but the limit is approaching 1 not exactly equals to 1 !
+  if (_x == 0. && _n == 0) return 1.;
+  if (_n == 1) return _x;
+  if (_n%2 == 0) return optimized_recursive_power(_x*_x, _n/2);
   else
   {
-    for (size_t i = 0; i < _n; i++)
-    {
-      result *= _x;
-    }
+    return optimized_recursive_power(_x*_x, (_n-1)/2);
   }
-  return result;
 }
+// Time complexity  O(log n)
 
-// Time complexity  O(_n)
 
 int main()
 {
@@ -52,7 +53,7 @@ int main()
   auto start = high_resolution_clock::now();
   // Call of the function
   cout << "The result of the call recursive_power(" << x << " , " << n
-    << ") is: " << trivial_power(x,n) << '\n';
+    << ") is: " << optimized_recursive_power(x,n) << '\n';
   // end cout
 
   // stopping time
