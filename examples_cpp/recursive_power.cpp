@@ -26,13 +26,25 @@ using namespace std::chrono;
 double recursive_power(double _x, size_t _n)
 {
   // Case when x = n = 0 ?! We know that: (1/n)^(1/n) -> 1 when n -> +oo
-  // Because: (1/n) ^(1/n) = e ^(ln(1/n) / n)
-  //                       = e ^( (ln(1)-ln(n)) / n) (ln(1) = 0)
-  //                       = e ^( -ln(n) / n)
-  //                       ~ 1 + (-ln(n)/n) + O((1/n)^2) where (O(1/n)^2) -> 0)
-  //                       ~ 1 + (-ln(n)/n) + O((1/n)^2) where (O(1/n)^2) -> 0)
-  //                       -> 1 when n -> +oo
-  // so 0^0 = 1 ?! Yes, but the limit is approaching 1 not exactly equals to 1 !
+  // Proof:
+  // (1/n) ^(1/n) = e^  [ (1/n) * (ln(1/n)) ] ( proof: a^b      = e^[b ln (a)] )
+  //              = e^  [ (ln(1)-ln(n)) / n ] ( proof: ln(a/b)  = ln(a)-ln(b)  )
+  //              = e^  [     -ln(n)    / n ] ( proof: ln(1)    = 0            )
+  //              = e^ -[  (  ln(n)    / n) ] ( proof: e^[-x/y] = e^-[x/y]     )
+  //              -> e ^ [-0] when n-> +oo    ( proof: (ii)                    )
+  //              -> 1 when n-> +oo           ( proof: (iii) and e^0 = 1       )
+  //                                                                           □
+
+  // Intermediate proof (i)
+  //   (i)  : for all x in real numbers, we have: [ln(x) / x] -> 0 when x -> +oo
+  // Intermediate proof (ii)
+  //   (ii) : calling (i) with x = n, we have:    [ln(n) / n] -> 0 when n -> +oo
+  // Intermediate proof (iii)
+  //  (iii) : assuming that exp is a continuous function so we can switch
+  //          the order             lim exp(u_n) = exp(lim u_n)
+
+  // so 0^0 = 1 ?! Not really (link) but the limit is approaching 1 !
+  // (link): https://fr.wikipedia.org/wiki/Z%C3%A9ro_puissance_z%C3%A9ro)
   if (_x == 0. && _n == 0) return 1.;
 
   // Ternary Operator equivalent to (*)
